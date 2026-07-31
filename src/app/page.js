@@ -1,5 +1,6 @@
 import AboutSection from "@/components/AboutSection";
 import HeroBanner from "@/components/HeroBanner";
+import VenturesSection from "@/components/VenturesSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
   <div>
     <HeroBanner></HeroBanner>
     <AboutSection></AboutSection>
+    <VenturesSection></VenturesSection>
   </div>
   );
 }
