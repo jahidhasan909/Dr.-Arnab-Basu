@@ -1,8 +1,9 @@
 import AboutSection from "@/components/AboutSection";
 import FrameworksSection from "@/components/FrameworksSection";
 import HeroBanner from "@/components/HeroBanner";
+import KeynotesSection from "@/components/KeynotesSection";
 import VenturesSection from "@/components/VenturesSection";
-import Image from "next/image";
+
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
     <AboutSection></AboutSection>
     <VenturesSection></VenturesSection>
     <FrameworksSection></FrameworksSection>
+    <KeynotesSection></KeynotesSection>
   </div>
   );
 }
