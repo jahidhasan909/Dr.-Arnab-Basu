@@ -55,7 +55,7 @@ const PUBLICATIONS = [
 
 const FrameworksSection = () => {
     return (
-        <section id="frameworks" className="relative py-20 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
+        <section id="frameworks" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
             <div className="space-y-12">
 
 
@@ -68,18 +68,18 @@ const FrameworksSection = () => {
                 >
                     <Badge
                         variant="outline"
-                        className="bg-white/10 text-white px-3.5 py-3 border-white/10 text-xs font-semibold tracking-widest uppercase rounded-full backdrop-blur-md inline-flex items-center gap-1.5"
+                        className="bg-white/10 text-white px-3 sm:px-3.5 py-1.5 sm:py-2 border-white/10 text-[10px] sm:text-xs font-semibold tracking-wider sm:tracking-widest uppercase rounded-full backdrop-blur-md inline-flex items-center justify-center gap-1.5 max-w-full leading-tight text-center whitespace-normal"
                     >
-                        <Sparkles className="w-3.5 h-3.5" />
-                        Thought Leadership & Intellectual Property
+                        <Sparkles className="w-3 sm:h-3.5 sm:w-3.5 h-3 shrink-0" />
+                        <span>Thought Leadership & Intellectual Property</span>
                     </Badge>
 
-                    <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                         Proprietary Frameworks & Publications
                     </h2>
 
-                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                        Quantifying cognitive agility, founder mindset, and structuring AI adoption models for enterprise human empowerment.
+                    <p className="text-slate-300 text-xs sm:text-[0.95rem] leading-relaxed">
+                        Quantifying cognitive agility, founder mindset, and structuring AI adoption <br /> models for enterprise human empowerment.
                     </p>
                 </motion.div>
 
@@ -89,37 +89,40 @@ const FrameworksSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
+                    className="w-full"
                 >
                     <Tabs defaultValue="opportunity-lens" className="w-full">
-                        <div className="flex justify-center mb-6">
-                            <TabsList className="bg-white/10 border border-white/10 backdrop-blur-md p-1 rounded-full">
+
+                        <div className="flex justify-center mb-6 px-2">
+                            <TabsList className="bg-white/10 border border-white/10 backdrop-blur-md p-8 rounded-md sm:rounded-full flex md:p-1.5 flex-col sm:flex-row gap-1 w-full sm:w-auto h-auto">
                                 <TabsTrigger
                                     value="opportunity-lens"
-                                    className="text-slate-300 bg-transparent hover:text-white hover:bg-white/5 data-[state=active]:bg-white/20 data-[state=active]:text-white data-[state=active]:shadow-sm text-xs sm:text-sm font-medium px-4 py-2 rounded-full transition-all hover:cursor-pointer "
+                                    className="w-full sm:w-auto text-slate-300 bg-transparent hover:text-white hover:bg-white/5 data-[state=active]:bg-white/20 data-[state=active]:text-white data-[state=active]:shadow-sm text-xs sm:text-sm font-medium px-5 py-2.5 rounded-xl sm:rounded-full transition-all cursor-pointer text-center"
                                 >
                                     The Opportunity Lens Framework™
                                 </TabsTrigger>
                                 <TabsTrigger
                                     value="founder-first"
-                                    className="text-slate-300 bg-transparent hover:text-white hover:bg-white/5 data-[state=active]:bg-white/20 data-[state=active]:text-white data-[state=active]:shadow-sm text-xs sm:text-sm font-medium px-4 py-2 rounded-full transition-all hover:cursor-pointer"
+                                    className="w-full sm:w-auto text-slate-300 bg-transparent hover:text-white hover:bg-white/5 data-[state=active]:bg-white/20 data-[state=active]:text-white data-[state=active]:shadow-sm text-xs sm:text-sm font-medium px-5 py-2.5 rounded-xl sm:rounded-full transition-all cursor-pointer text-center"
                                 >
                                     Yancha Founder First Framework™
                                 </TabsTrigger>
                             </TabsList>
                         </div>
 
-                        
-                        <TabsContent value="opportunity-lens">
-                            <Card className="bg-white/10 border-white/15 text-white backdrop-blur-xl p-6 rounded-2xl overflow-hidden relative group">
-                                <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
+
+                        <TabsContent value="opportunity-lens" className="focus-visible:outline-none">
+                            <Card className="bg-white/10 border-white/15 text-white backdrop-blur-xl p-5 sm:p-8 rounded-2xl overflow-hidden relative group">
+                                <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none hidden sm:block">
                                     <Lightbulb className="w-64 h-64 text-white" />
                                 </div>
 
                                 <CardHeader className="p-0 mb-6">
-                                    <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1">
-                                        <Brain className="w-4 h-4" /> Strategic AI Integration Model
+                                    <div className="flex items-center gap-2 text-slate-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+                                        <Brain className="w-4 h-4 text-white" />
+                                        <span>Strategic AI Integration Model</span>
                                     </div>
-                                    <CardTitle className="text-xl sm:text-2xl font-bold">
+                                    <CardTitle className="text-xl sm:text-2xl font-bold text-white">
                                         The Opportunity Lens Framework™
                                     </CardTitle>
                                     <CardDescription className="text-slate-300 text-xs sm:text-sm mt-1 max-w-3xl leading-relaxed">
@@ -128,34 +131,40 @@ const FrameworksSection = () => {
                                 </CardHeader>
 
                                 <CardContent className="p-0 grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 space-y-2 hover:bg-red-500/15 transition-all">
+                                    <div className="p-4 sm:p-5 rounded-xl bg-red-500/10 border border-red-500/20 space-y-2 hover:bg-red-500/15 transition-all">
                                         <div className="p-2 w-fit rounded-lg bg-red-500/20 text-red-400">
                                             <ShieldAlert className="w-4 h-4" />
                                         </div>
                                         <h4 className="text-sm font-bold text-red-200">AI as a FOE</h4>
-                                        <span className="text-[10px] uppercase tracking-wider font-semibold text-red-400 block">Passive Surrender</span>
+                                        <span className="text-[10px] uppercase tracking-wider font-semibold text-red-400 block">
+                                            Passive Surrender
+                                        </span>
                                         <p className="text-xs text-slate-300 leading-relaxed">
                                             Uncritical reliance on automation that leads to cognitive atrophy, loss of critical judgment, and strategic vulnerability.
                                         </p>
                                     </div>
 
-                                    <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2 hover:bg-blue-500/15 transition-all">
+                                    <div className="p-4 sm:p-5 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2 hover:bg-blue-500/15 transition-all">
                                         <div className="p-2 w-fit rounded-lg bg-blue-500/20 text-blue-400">
                                             <Users className="w-4 h-4" />
                                         </div>
                                         <h4 className="text-sm font-bold text-blue-200">AI as a FRIEND</h4>
-                                        <span className="text-[10px] uppercase tracking-wider font-semibold text-blue-400 block">Democratization</span>
+                                        <span className="text-[10px] uppercase tracking-wider font-semibold text-blue-400 block">
+                                            Democratization
+                                        </span>
                                         <p className="text-xs text-slate-300 leading-relaxed">
                                             Using AI as an accessible tool to democratize foundational literacy, technical skills, and domain knowledge across underserved sectors.
                                         </p>
                                     </div>
 
-                                    <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-2 hover:bg-emerald-500/15 transition-all">
-                                        <div className="p-2 w-fit rounded-lg bg-emerald-500/20 text-emerald-400">
+                                    <div className="p-4 sm:p-5 rounded-xl bg-white/10 border border-white/20 space-y-2 hover:bg-white/15 transition-all">
+                                        <div className="p-2 w-fit rounded-lg bg-white/20 text-white">
                                             <Zap className="w-4 h-4" />
                                         </div>
-                                        <h4 className="text-sm font-bold text-emerald-200">AI as a FORCE MULTIPLIER</h4>
-                                        <span className="text-[10px] uppercase tracking-wider font-semibold text-emerald-400 block">Augmented Human Agility</span>
+                                        <h4 className="text-sm font-bold text-white">AI as a FORCE MULTIPLIER</h4>
+                                        <span className="text-[10px] uppercase tracking-wider font-semibold text-slate-300 block">
+                                            Augmented Human Agility
+                                        </span>
                                         <p className="text-xs text-slate-300 leading-relaxed">
                                             Structured human intelligence directs, audits, and compounds AI outputs to achieve exponential productivity gains without losing strategic agency.
                                         </p>
@@ -165,14 +174,14 @@ const FrameworksSection = () => {
                         </TabsContent>
 
 
-                       
-                        <TabsContent value="founder-first">
-                            <Card className="bg-white/10 border-white/15 text-white backdrop-blur-xl p-6 rounded-2xl overflow-hidden">
+                        <TabsContent value="founder-first" className="focus-visible:outline-none">
+                            <Card className="bg-white/10 border-white/15 text-white backdrop-blur-xl p-5 sm:p-8 rounded-2xl overflow-hidden">
                                 <CardHeader className="p-0 mb-6">
-                                    <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1">
-                                        <Target className="w-4 h-4" /> Behavioral Architecture
+                                    <div className="flex items-center gap-2 text-slate-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+                                        <Target className="w-4 h-4 text-white" />
+                                        <span>Behavioral Architecture</span>
                                     </div>
-                                    <CardTitle className="text-xl sm:text-2xl font-bold">
+                                    <CardTitle className="text-xl sm:text-2xl font-bold text-white">
                                         Yancha Founder First Framework™
                                     </CardTitle>
                                     <CardDescription className="text-slate-300 text-xs sm:text-sm mt-1 max-w-3xl leading-relaxed">
@@ -180,60 +189,64 @@ const FrameworksSection = () => {
                                     </CardDescription>
                                 </CardHeader>
 
-                                <CardContent className="p-0 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-3">
+                                <CardContent className="p-0 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                                    <div className="p-4 sm:p-5 rounded-xl bg-white/5 border border-white/10 space-y-3">
                                         <div className="border-b border-white/10 pb-2 flex items-center justify-between">
-                                            <h4 className="text-sm font-bold text-emerald-400">Layer 1: Founder Mindset</h4>
-                                            <Badge variant="outline" className="text-[10px] text-slate-300 border-white/10">Inner Clarity</Badge>
+                                            <h4 className="text-sm font-bold text-white">Layer 1: Founder Mindset</h4>
+                                            <Badge variant="outline" className="text-[10px] text-slate-300 border-white/20">
+                                                Inner Clarity
+                                            </Badge>
                                         </div>
                                         <ul className="space-y-2 text-xs text-slate-300">
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">The Awakening:</strong> Clarifying inner purpose (&ldquo;Your Real WHY&rdquo;).</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Opportunity Eye:</strong> Identifying market whitespace others miss.</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Customer Truth:</strong> Interacting with real human needs over abstract buyer personas.</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Planning North Star:</strong> Utilizing 5 Whys for strategic alignment.</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Financial Intelligence:</strong> Unit economics before top-line revenue.</span>
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-3">
+                                    <div className="p-4 sm:p-5 rounded-xl bg-white/5 border border-white/10 space-y-3">
                                         <div className="border-b border-white/10 pb-2 flex items-center justify-between">
-                                            <h4 className="text-sm font-bold text-emerald-400">Layer 2: Founder Skills</h4>
-                                            <Badge variant="outline" className="text-[10px] text-slate-300 border-white/10">Outer Impact</Badge>
+                                            <h4 className="text-sm font-bold text-white">Layer 2: Founder Skills</h4>
+                                            <Badge variant="outline" className="text-[10px] text-slate-300 border-white/20">
+                                                Outer Impact
+                                            </Badge>
                                         </div>
                                         <ul className="space-y-2 text-xs text-slate-300">
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Creativity:</strong> Overcoming operational bottlenecks.</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Leadership:</strong> Building belief and team alignment.</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Systems:</strong> Scaling trust through repeatable processes.</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Execution:</strong> Eagle&apos;s Nest mindset for high-level and detailed execution.</span>
                                             </li>
                                             <li className="flex items-start gap-2">
-                                                <span className="text-emerald-400 font-bold">•</span>
+                                                <span className="text-white font-bold">•</span>
                                                 <span><strong className="text-white">Resilience:</strong> Complete ownership of venture outcomes.</span>
                                             </li>
                                         </ul>
@@ -241,7 +254,6 @@ const FrameworksSection = () => {
                                 </CardContent>
                             </Card>
                         </TabsContent>
-
                     </Tabs>
                 </motion.div>
 

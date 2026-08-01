@@ -57,7 +57,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative py-16 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
+    <section id="contact" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <div className="space-y-12">
         
        
@@ -76,12 +76,12 @@ const ContactSection = () => {
             Direct Collaboration
           </Badge>
 
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-snug">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug">
             Book an Executive Advisory, Keynote, or Jury Appointment
           </h2>
 
-          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-            Dr. Arnab Basu is available for C-Suite advisory, executive keynote addresses on Behavioral Intelligence & AI Strategy, venture jury appointments, and strategic board positions.
+          <p className="text-slate-300 text-xs sm:text-[0.95rem] leading-relaxed">
+            Dr. Arnab Basu is available for C-Suite advisory, executive keynote addresses on Behavioral <br /> Intelligence & AI Strategy, venture jury appointments, and strategic board positions.
           </p>
         </motion.div>
 

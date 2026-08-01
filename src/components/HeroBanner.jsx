@@ -60,7 +60,7 @@ const HeroBanner = () => {
         }
     ];
 
- 
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -82,46 +82,49 @@ const HeroBanner = () => {
     };
 
     return (
-        <motion.section 
+        <motion.section
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className='mt-35 relative flex justify-center flex-col items-center'
+            className='mt-29 lg:mt-34 relative flex justify-center flex-col items-center'
         >
-            
-            <motion.div variants={itemVariants} className="inline-flex z-50 items-center gap-2.5 px-4 py-1 w-md mx-auto rounded-full bg-white/10 border border-white/15 backdrop-blur-md shadow-lg shadow-emerald-950/30">
-                <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+
+            <motion.div
+                variants={itemVariants}
+                className="flex sm:inline-flex items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 w-full sm:w-auto max-w-[calc(100vw-2rem)] sm:max-w-max mx-auto rounded-full bg-white/10 border border-white/15 backdrop-blur-md shadow-lg shadow-black/20"
+            >
+                <span className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 sm:h-2.5 w-2 sm:w-2.5 bg-green-600" />
                 </span>
-                <span className="text-xs sm:text-sm font-semibold tracking-wide text-slate-200">
-                    Behavioral Intelligence Architect &amp; Executive Strategist
+                <span className="text-[11px] sm:text-sm font-semibold tracking-wide text-slate-200 text-center leading-tight break-words">
+                    Behavioral Intelligence Architect & Executive Strategist
                 </span>
             </motion.div>
 
-           
+
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 flex items-center justify-center -mt-87"
+                className="absolute hidden  inset-0 pointer-events-none select-none overflow-hidden z-0 lg:flex items-center justify-center -mt-87"
             >
                 <span className="text-[12vw] sm:text-[9.5vw] font-black tracking-tighter uppercase leading-none block text-transparent bg-clip-text bg-gradient-to-b from-white/3 via-white/3 to-transparent whitespace-nowrap opacity-40">
                     Dr. Arnab Basu
                 </span>
             </motion.div>
 
-           
+
             <motion.div variants={itemVariants} className='text-center flex flex-col justify-center items-center text-white py-9'>
-                <h1 className='text-4xl font-bold'>
-                    Measuring &amp; Scaling Human Irreplaceability <br /> in the AI Age
+                <h1 className='text-2xl lg:text-4xl font-bold'>
+                    Measuring & Scaling Human Irreplaceability <br /> in the AI Age
                 </h1>
-                <p className=' mt-2.5 w-[600px]'>
+                <p className=' mt-2.5 w-[300px] md:w-[385px] text-xs lg:text-[1rem]   lg:w-[600px]'>
                     {" Bridging Cognitive Artificial Intelligence, Behavioral Science, and Business Model Innovation to resolve the critical 'Behavioral Architecture Crisis' in modern talent, leadership, and education."}
                 </p>
             </motion.div>
 
-            
+
             <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 items-center gap-3 py-4">
                 {BADGES.map((item, idx) => {
                     const Icon = item.icon;
@@ -144,8 +147,8 @@ const HeroBanner = () => {
                 })}
             </motion.div>
 
-          
-            <motion.div variants={itemVariants} className='flex gap-3 py-4'>
+
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-3 py-4  sm:w-auto">
                 <Button
                     asChild
                     size="lg"
@@ -161,17 +164,17 @@ const HeroBanner = () => {
                     asChild
                     variant="outline"
                     size="lg"
-                    className="w-full sm:w-auto bg-white/16 hover:bg-white/20 text-white border-white/20 hover:border-white/40 font-medium rounded-full px-7 py-6 backdrop-blur-md transition-all duration-300"
+                    className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border-white/20 hover:border-white/40 font-medium rounded-full px-7 py-6 backdrop-blur-md transition-all duration-300"
                 >
                     <Link href="#contact" className="flex items-center justify-center gap-2">
-                        <Calendar className="w-4 h-4 text-blue-400" />
+                        <Calendar className="w-4 h-4 text-slate-300" />
                         Book Executive Advisory
                     </Link>
                 </Button>
             </motion.div>
 
-          
-            <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-lg bg-white/10 border border-white/10 mt-10">
+
+            <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6 rounded-lg bg-white/10 border border-white/10 mt-10">
                 {METRICS.map((metric, idx) => {
                     const Icon = metric.icon;
 

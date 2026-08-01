@@ -78,7 +78,7 @@ const VENTURES = [
 
 const VenturesSection = () => {
   return (
-    <section id="ventures" className="relative py-16 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
+    <section id="ventures" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <div className="space-y-8">
         
       
@@ -101,7 +101,7 @@ const VenturesSection = () => {
             Enterprise Portfolio & Board Leadership
           </h2>
 
-          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          <p className="text-slate-300 text-xs sm:text-[0.95rem] leading-relaxed">
             Directing transformative ventures across EdTech, Cognitive AI, Angel Investment, <br /> Regional Incubators, and Cultural Heritage.
           </p>
         </motion.div>

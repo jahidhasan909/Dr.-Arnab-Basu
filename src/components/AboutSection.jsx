@@ -84,7 +84,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="relative py-28 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
+    <section id="about" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -106,7 +106,7 @@ const AboutSection = () => {
             About & Scholarly Pedigree
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-xs sm:text-[0.95rem] leading-relaxed">
             Bridging institutional academic research with enterprise-scale implementation, <br /> venture incubation, and behavioral economics.
           </p>
         </motion.div>
@@ -154,7 +154,7 @@ const AboutSection = () => {
         <div className="max-w-[1309px] mx-auto pt-6">
           <motion.h3 
             variants={itemVariants}
-            className="text-xl sm:text-2xl font-bold text-center mb-12 text-white"
+            className="text-xl sm:text-2xl font-bold text-center mb-6 text-white"
           >
             Academic & Professional Experience
           </motion.h3>

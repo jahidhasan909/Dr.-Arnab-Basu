@@ -59,7 +59,7 @@ const JURY_INITIATIVES = [
 
 const KeynotesSection = () => {
   return (
-    <section id="keynotes" className="relative py-16 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
+    <section id="keynotes" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <div className="space-y-12">
         
         

@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
+import AppWapperLoader from "@/components/AppWapperLoader";
+import LenisProvider from "@/components/LenisProvider";
 
 
 const Josefinsans = Josefin_Sans({
@@ -22,13 +24,17 @@ export default function RootLayout({ children }) {
       className={`${Josefinsans.className} h-full antialiased`}
     >
       <body className="min-h-full bg-[#18242f] flex flex-col">
-        <Navbar></Navbar>
-        <main className="grow">
-        {children}
-        </main>
-          <Toaster />
-        <Footer></Footer>
-        </body>
+        <AppWapperLoader>
+          <LenisProvider>
+            <Navbar></Navbar>
+            <main className="grow">
+              {children}
+            </main>
+            <Toaster />
+            <Footer></Footer>
+          </LenisProvider>
+        </AppWapperLoader>
+      </body>
     </html>
   );
 }
