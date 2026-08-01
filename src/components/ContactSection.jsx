@@ -80,8 +80,11 @@ const ContactSection = () => {
             Book an Executive Advisory, Keynote, or Jury Appointment
           </h2>
 
-          <p className="text-slate-300 text-xs sm:text-[0.95rem] leading-relaxed">
-            Dr. Arnab Basu is available for C-Suite advisory, executive keynote addresses on Behavioral <br /> Intelligence & AI Strategy, venture jury appointments, and strategic board positions.
+          <p className="text-slate-300 lg:hidden text-xs sm:text-[0.95rem] leading-relaxed">
+            Dr. Arnab Basu is available for C-Suite advisory,  executive keynote addresses on Behavioral  Intelligence & AI Strategy, <br /> venture jury appointments, and strategic board positions.
+          </p>
+          <p className="text-slate-300 hidden lg:block sm:text-[0.95rem] leading-relaxed">
+            Dr. Arnab Basu is available for C-Suite advisory,  executive keynote addresses on Behavioral <br /> Intelligence & AI Strategy,  venture jury appointments, and strategic board positions.
           </p>
         </motion.div>
 

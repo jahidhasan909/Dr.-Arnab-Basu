@@ -102,7 +102,7 @@ const VenturesSection = () => {
           </h2>
 
           <p className="text-slate-300 text-xs sm:text-[0.95rem] leading-relaxed">
-            Directing transformative ventures across EdTech, Cognitive AI, Angel Investment, <br /> Regional Incubators, and Cultural Heritage.
+            Directing transformative ventures across EdTech, Cognitive AI, <br /> Angel Investment, Regional Incubators, and Cultural Heritage.
           </p>
         </motion.div>
 

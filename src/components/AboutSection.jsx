@@ -107,7 +107,7 @@ const AboutSection = () => {
           </h2>
 
           <p className="text-slate-300 text-xs sm:text-[0.95rem] leading-relaxed">
-            Bridging institutional academic research with enterprise-scale implementation, <br /> venture incubation, and behavioral economics.
+            Bridging institutional academic research with enterprise-scale <br /> implementation, venture incubation, and behavioral economics.
           </p>
         </motion.div>
 

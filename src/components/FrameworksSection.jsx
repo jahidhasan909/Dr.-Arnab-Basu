@@ -79,7 +79,7 @@ const FrameworksSection = () => {
                     </h2>
 
                     <p className="text-slate-300 text-xs sm:text-[0.95rem] leading-relaxed">
-                        Quantifying cognitive agility, founder mindset, and structuring AI adoption <br /> models for enterprise human empowerment.
+                        Quantifying cognitive agility, founder mindset, and structuring AI <br /> adoption  models for enterprise human empowerment.
                     </p>
                 </motion.div>
 
