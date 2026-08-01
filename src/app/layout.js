@@ -1,6 +1,8 @@
 import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 
 const Josefinsans = Josefin_Sans({
@@ -24,6 +26,8 @@ export default function RootLayout({ children }) {
         <main className="grow">
         {children}
         </main>
+          <Toaster />
+        <Footer></Footer>
         </body>
     </html>
   );

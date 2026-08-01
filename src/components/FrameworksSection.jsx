@@ -55,7 +55,7 @@ const PUBLICATIONS = [
 
 const FrameworksSection = () => {
     return (
-        <section id="frameworks" className="relative py-20 px-4 max-w-6xl mx-auto text-white overflow-hidden">
+        <section id="frameworks" className="relative py-20 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
             <div className="space-y-12">
 
 

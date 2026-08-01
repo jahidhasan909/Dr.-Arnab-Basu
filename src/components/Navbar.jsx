@@ -53,7 +53,7 @@ const Navbar = () => {
   };
 
   return (
-    <>
+    <div>
       
       <motion.div
         style={{ scaleX }}
@@ -61,7 +61,7 @@ const Navbar = () => {
       />
 
       <nav className="fixed top-0 left-0 w-full z-[100] py-4 lg:py-6  ">
-        <div className="max-w-11/12 mx-auto px-6 lg:px-12 flex items-center justify-between">
+        <div className="max-w-[1380px] mx-auto px-6 lg:px-12 flex items-center justify-between">
           
         
           <motion.a
@@ -163,7 +163,7 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </nav>
-    </>
+    </div>
   );
 };
 

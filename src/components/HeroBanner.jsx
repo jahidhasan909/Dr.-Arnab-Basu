@@ -106,7 +106,7 @@ const HeroBanner = () => {
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 flex items-center justify-center -mt-87"
             >
-                <span className="text-[14vw] sm:text-[11vw] font-black tracking-tighter uppercase leading-none block text-transparent bg-clip-text bg-gradient-to-b from-white/3 via-white/3 to-transparent whitespace-nowrap opacity-40">
+                <span className="text-[12vw] sm:text-[9.5vw] font-black tracking-tighter uppercase leading-none block text-transparent bg-clip-text bg-gradient-to-b from-white/3 via-white/3 to-transparent whitespace-nowrap opacity-40">
                     Dr. Arnab Basu
                 </span>
             </motion.div>

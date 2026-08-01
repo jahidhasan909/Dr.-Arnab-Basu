@@ -84,7 +84,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="relative py-28 px-4 max-w-11/12 mx-auto text-white overflow-hidden">
+    <section id="about" className="relative py-28 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -112,7 +112,7 @@ const AboutSection = () => {
         </motion.div>
 
   
-        <motion.div variants={itemVariants} className="relative max-w-6xl mx-auto">
+        <motion.div variants={itemVariants} className="relative max-w-[1309px] mx-auto">
           <div className="relative p-6 sm:p-8 rounded-lg bg-white/10 border border-white/15 backdrop-blur-xl overflow-hidden group hover:border-white/25 transition-all">
             <Quote className="absolute -top-3 -right-3 w-28 h-28 text-white/[0.04] pointer-events-none rotate-12" />
             
@@ -128,7 +128,7 @@ const AboutSection = () => {
         </motion.div>
 
         
-        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1309px] mx-auto">
           <div className="p-6 rounded-lg bg-white/10 border border-white/10 backdrop-blur-md space-y-3 hover:bg-white/[0.12] transition-all">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
@@ -139,7 +139,7 @@ const AboutSection = () => {
             </p>
           </div>
 
-          <div className="p-6 rounded-lg bg-white/10 border border-white/10 backdrop-blur-md space-y-3 hover:bg-white/[0.12] transition-all">
+          <div className="p-6 rounded-lg bg-white/10 border border-white/10  space-y-3 hover:bg-white/[0.12] transition-all">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#72838e]"></span>
               Consulting &amp; Venture Leadership
@@ -151,7 +151,7 @@ const AboutSection = () => {
         </motion.div>
 
         
-        <div className="max-w-6xl mx-auto pt-6">
+        <div className="max-w-[1309px] mx-auto pt-6">
           <motion.h3 
             variants={itemVariants}
             className="text-xl sm:text-2xl font-bold text-center mb-12 text-white"
