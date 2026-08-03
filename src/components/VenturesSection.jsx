@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Building2, 
@@ -14,7 +14,6 @@ import {
   Award
 } from 'lucide-react';
 
-
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -23,6 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import ParallaxLayer from '@/components/ui/ParallaxLayer';
 
 const VENTURES = [
   {
@@ -77,11 +77,19 @@ const VENTURES = [
 ];
 
 const VenturesSection = () => {
+  const sectionRef = useRef(null);
+
+  const getParallaxOffset = (idx) => {
+    const col = idx % 3;
+    if (col === 0) return [-20, 20];
+    if (col === 1) return [-10, 10];
+    return [-25, 25];
+  };
+
   return (
-    <section id="ventures" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
+    <section ref={sectionRef} id="ventures" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <div className="space-y-8">
         
-      
         <motion.div 
           initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -106,82 +114,84 @@ const VenturesSection = () => {
           </p>
         </motion.div>
 
-       
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {VENTURES.map((venture, idx) => {
             const Icon = venture.icon;
             return (
-              <motion.div 
-                key={idx} 
-                initial={{ opacity: 0, y: -50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: idx * 0.1, 
-                  ease: [0.25, 1, 0.5, 1] 
-                }}
+              <ParallaxLayer
+                key={idx}
+                targetRef={sectionRef}
+                offset={getParallaxOffset(idx)}
                 className="h-full"
               >
-                <Card className="h-full flex flex-col justify-between bg-white/10 border-white/10 text-white backdrop-blur-md hover:border-white/20 hover:bg-white/[0.12] transition-all duration-300 p-0 overflow-hidden">
-                  
-                  
-                  <CardHeader className="p-4 pb-2 space-y-3">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="p-2 rounded-lg bg-white/10 border border-white/10 text-emerald-400">
-                        <Icon className="w-4 h-4" />
+                <motion.div 
+                  initial={{ opacity: 0, y: -50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: idx * 0.1, 
+                    ease: [0.25, 1, 0.5, 1] 
+                  }}
+                  className="h-full"
+                >
+                  <Card className="h-full flex flex-col justify-between bg-white/10 border-white/10 text-white backdrop-blur-md hover:border-white/20 hover:bg-white/[0.12] transition-all duration-300 p-0 overflow-hidden">
+                    
+                    <CardHeader className="p-4 pb-2 space-y-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="p-2 rounded-lg bg-white/10 border border-white/10 text-emerald-400">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <Badge variant="secondary" className="bg-white/5 border border-white/10 text-slate-300 font-normal text-[10px] truncate max-w-[180px]">
+                          {venture.category}
+                        </Badge>
                       </div>
-                      <Badge variant="secondary" className="bg-white/5 border border-white/10 text-slate-300 font-normal text-[10px] truncate max-w-[180px]">
-                        {venture.category}
-                      </Badge>
-                    </div>
 
-                    <div className="space-y-1">
-                      <span className="text-xs font-semibold text-emerald-400 block">
-                        {venture.role}
-                      </span>
-                      <CardTitle className="text-base font-bold text-white group-hover:text-emerald-300 transition-colors leading-snug">
-                        {venture.title}
-                      </CardTitle>
-                    </div>
-                  </CardHeader>
-
-                  
-                  <CardContent className="px-4 py-1 text-xs text-slate-300 leading-relaxed flex-grow">
-                    {venture.description}
-                  </CardContent>
-
-                  
-                  <CardFooter className="p-4 pt-3 border-t border-white/10 flex flex-col items-start space-y-1.5 text-[11px]">
-                    {venture.metric && (
-                      <div className="flex items-start gap-1.5 text-slate-200">
-                        <Award className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                        <span>{venture.metric}</span>
+                      <div className="space-y-1">
+                        <span className="text-xs font-semibold text-emerald-400 block">
+                          {venture.role}
+                        </span>
+                        <CardTitle className="text-base font-bold text-white group-hover:text-emerald-300 transition-colors leading-snug">
+                          {venture.title}
+                        </CardTitle>
                       </div>
-                    )}
+                    </CardHeader>
 
-                    {venture.focus && (
-                      <div className="text-slate-300">
-                        <strong className="text-slate-200 font-semibold">Key Focus:</strong> {venture.focus}
-                      </div>
-                    )}
+                    <CardContent className="px-4 py-1 text-xs text-slate-300 leading-relaxed flex-grow">
+                      {venture.description}
+                    </CardContent>
 
-                    {venture.footnote && (
-                      <div className="text-slate-400 italic">
-                        * {venture.footnote}
-                      </div>
-                    )}
+                    <CardFooter className="p-4 pt-3 border-t border-white/10 flex flex-col items-start space-y-1.5 text-[11px]">
+                      {venture.metric && (
+                        <div className="flex items-start gap-1.5 text-slate-200">
+                          <Award className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                          <span>{venture.metric}</span>
+                        </div>
+                      )}
 
-                    {venture.location && (
-                      <div className="flex items-center gap-1 text-slate-400 pt-0.5">
-                        <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
-                        <span>{venture.location}</span>
-                      </div>
-                    )}
-                  </CardFooter>
+                      {venture.focus && (
+                        <div className="text-slate-300">
+                          <strong className="text-slate-200 font-semibold">Key Focus:</strong> {venture.focus}
+                        </div>
+                      )}
 
-                </Card>
-              </motion.div>
+                      {venture.footnote && (
+                        <div className="text-slate-400 italic">
+                          * {venture.footnote}
+                        </div>
+                      )}
+
+                      {venture.location && (
+                        <div className="flex items-center gap-1 text-slate-400 pt-0.5">
+                          <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
+                          <span>{venture.location}</span>
+                        </div>
+                      )}
+                    </CardFooter>
+
+                  </Card>
+                </motion.div>
+              </ParallaxLayer>
             );
           })}
         </div>

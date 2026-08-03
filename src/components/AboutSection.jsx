@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Award, Briefcase, BookOpen, Quote, Sparkles } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
+import ParallaxLayer from '@/components/ui/ParallaxLayer';
 
 const TIMELINE = [
   {
@@ -56,6 +57,8 @@ const TIMELINE = [
 ];
 
 const AboutSection = () => {
+  const sectionRef = useRef(null);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -73,7 +76,6 @@ const AboutSection = () => {
     }
   };
 
-  
   const timelineItemVariants = {
     hidden: { opacity: 0, y: -30 },
     visible: {
@@ -84,7 +86,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
+    <section ref={sectionRef} id="about" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -92,11 +94,10 @@ const AboutSection = () => {
         viewport={{ once: true, margin: "-100px" }}
         className="space-y-6"
       >
-      
         <motion.div variants={itemVariants} className="text-center space-y-4 max-w-3xl mx-auto">
           <Badge 
             variant="outline" 
-            className="bg-white/10 text-white px-4 py-3  border-white/10 text-xs font-semibold tracking-widest uppercase rounded-full backdrop-blur-md inline-flex items-center gap-1.5"
+            className="bg-white/10 text-white px-4 py-3 border-white/10 text-xs font-semibold tracking-widest uppercase rounded-full backdrop-blur-md inline-flex items-center gap-1.5"
           >
             <Sparkles className="w-3.5 h-3.5" />
             Executive Thesis
@@ -111,10 +112,15 @@ const AboutSection = () => {
           </p>
         </motion.div>
 
-  
         <motion.div variants={itemVariants} className="relative max-w-[1309px] mx-auto">
           <div className="relative p-6 sm:p-8 rounded-lg bg-white/10 border border-white/15 backdrop-blur-xl overflow-hidden group hover:border-white/25 transition-all">
-            <Quote className="absolute -top-3 -right-3 w-28 h-28 text-white/[0.04] pointer-events-none rotate-12" />
+            <ParallaxLayer
+              targetRef={sectionRef}
+              offset={[-30, 30]}
+              className="absolute -top-3 -right-3 pointer-events-none"
+            >
+              <Quote className="w-28 h-28 text-white/[0.04] rotate-12" />
+            </ParallaxLayer>
             
             <div className="relative z-10 space-y-3">
               <p className="text-xs font-semibold tracking-wider text-emerald-400 uppercase">
@@ -127,30 +133,32 @@ const AboutSection = () => {
           </div>
         </motion.div>
 
-        
         <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1309px] mx-auto">
-          <div className="p-6 rounded-lg bg-white/10 border border-white/10 backdrop-blur-md space-y-3 hover:bg-white/[0.12] transition-all">
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              Behavioral Intelligence & AI Strategy
-            </h3>
-            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              Dr. Arnab Basu is a Kolkata-based Behavioral Intelligence Architect, Cognitive AI strategist, executive management consultant, and EdTech entrepreneur. His body of work addresses how human agency, critical thinking, and social-emotional agility can be systematically quantified, measured, and scaled alongside automated Agentic AI models.
-            </p>
-          </div>
+          <ParallaxLayer targetRef={sectionRef} offset={[-15, 15]} className="h-full">
+            <div className="p-6 rounded-lg bg-white/10 border border-white/10 backdrop-blur-md space-y-3 hover:bg-white/[0.12] transition-all h-full">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                Behavioral Intelligence & AI Strategy
+              </h3>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Dr. Arnab Basu is a Kolkata-based Behavioral Intelligence Architect, Cognitive AI strategist, executive management consultant, and EdTech entrepreneur. His body of work addresses how human agency, critical thinking, and social-emotional agility can be systematically quantified, measured, and scaled alongside automated Agentic AI models.
+              </p>
+            </div>
+          </ParallaxLayer>
 
-          <div className="p-6 rounded-lg bg-white/10 border border-white/10  space-y-3 hover:bg-white/[0.12] transition-all">
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#72838e]"></span>
-              Consulting &amp; Venture Leadership
-            </h3>
-            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              With an executive background spanning strategy consulting at McKinsey &amp; Company, venture leadership as CEO of Yancha Positive Learning LLP, and directorial oversight across deep-tech hubs (ISI Kolkata) and angel investment networks (BANI), Dr. Basu develops frameworks that transform human capability into compound institutional value.
-            </p>
-          </div>
+          <ParallaxLayer targetRef={sectionRef} offset={[-25, 25]} className="h-full">
+            <div className="p-6 rounded-lg bg-white/10 border border-white/10 space-y-3 hover:bg-white/[0.12] transition-all h-full">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#72838e]"></span>
+                Consulting &amp; Venture Leadership
+              </h3>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                With an executive background spanning strategy consulting at McKinsey &amp; Company, venture leadership as CEO of Yancha Positive Learning LLP, and directorial oversight across deep-tech hubs (ISI Kolkata) and angel investment networks (BANI), Dr. Basu develops frameworks that transform human capability into compound institutional value.
+              </p>
+            </div>
+          </ParallaxLayer>
         </motion.div>
 
-        
         <div className="max-w-[1309px] mx-auto pt-6">
           <motion.h3 
             variants={itemVariants}
@@ -172,12 +180,10 @@ const AboutSection = () => {
                   transition={{ delay: idx * 0.1 }}
                   className="relative group"
                 >
-                 
-                  <div className="absolute -left-[43px] sm:-left-[51px] top-1 p-2 rounded-xl bg-white/10 border border-white/15 text-emerald-400  backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+                  <div className="absolute -left-[43px] sm:-left-[51px] top-1 p-2 rounded-xl bg-white/10 border border-white/15 text-emerald-400 backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
                     <Icon className="w-4 h-4" />
                   </div>
 
-                  
                   <div className="p-5 rounded-lg bg-white/10 border border-white/10 backdrop-blur-md hover:bg-white/15 transition-all duration-200 space-y-2">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                       <h4 className="text-base sm:text-lg font-bold text-white">

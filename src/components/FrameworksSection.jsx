@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
     Sparkles,
@@ -15,7 +15,6 @@ import {
     ArrowUpRight
 } from 'lucide-react';
 
-
 import { Badge } from "@/components/ui/badge";
 import {
     Card,
@@ -25,6 +24,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ParallaxLayer from '@/components/ui/ParallaxLayer';
 
 const PUBLICATIONS = [
     {
@@ -54,10 +54,11 @@ const PUBLICATIONS = [
 ];
 
 const FrameworksSection = () => {
-    return (
-        <section id="frameworks" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
-            <div className="space-y-12">
+    const sectionRef = useRef(null);
 
+    return (
+        <section ref={sectionRef} id="frameworks" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
+            <div className="space-y-12">
 
                 <motion.div
                     initial={{ opacity: 0, y: -30 }}
@@ -82,7 +83,6 @@ const FrameworksSection = () => {
                         Quantifying cognitive agility, founder mindset, and structuring AI <br /> adoption  models for enterprise human empowerment.
                     </p>
                 </motion.div>
-
 
                 <motion.div
                     initial={{ opacity: 0, y: -40 }}
@@ -110,14 +110,17 @@ const FrameworksSection = () => {
                             </TabsList>
                         </div>
 
-
                         <TabsContent value="opportunity-lens" className="focus-visible:outline-none">
                             <Card className="bg-white/10 border-white/15 text-white backdrop-blur-xl p-5 sm:p-8 rounded-2xl overflow-hidden relative group">
-                                <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none hidden sm:block">
+                                <ParallaxLayer
+                                    targetRef={sectionRef}
+                                    offset={[-40, 40]}
+                                    className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none hidden sm:block"
+                                >
                                     <Lightbulb className="w-64 h-64 text-white" />
-                                </div>
+                                </ParallaxLayer>
 
-                                <CardHeader className="p-0 mb-6">
+                                <CardHeader className="p-0 mb-6 relative z-10">
                                     <div className="flex items-center gap-2 text-slate-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
                                         <Brain className="w-4 h-4 text-white" />
                                         <span>Strategic AI Integration Model</span>
@@ -130,7 +133,7 @@ const FrameworksSection = () => {
                                     </CardDescription>
                                 </CardHeader>
 
-                                <CardContent className="p-0 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <CardContent className="p-0 grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
                                     <div className="p-4 sm:p-5 rounded-xl bg-red-500/10 border border-red-500/20 space-y-2 hover:bg-red-500/15 transition-all">
                                         <div className="p-2 w-fit rounded-lg bg-red-500/20 text-red-400">
                                             <ShieldAlert className="w-4 h-4" />
@@ -172,7 +175,6 @@ const FrameworksSection = () => {
                                 </CardContent>
                             </Card>
                         </TabsContent>
-
 
                         <TabsContent value="founder-first" className="focus-visible:outline-none">
                             <Card className="bg-white/10 border-white/15 text-white backdrop-blur-xl p-5 sm:p-8 rounded-2xl overflow-hidden">
@@ -257,7 +259,6 @@ const FrameworksSection = () => {
                     </Tabs>
                 </motion.div>
 
-
                 <div className="space-y-4">
                     <motion.h3
                         initial={{ opacity: 0, y: -20 }}
@@ -273,53 +274,61 @@ const FrameworksSection = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {PUBLICATIONS.map((pub, idx) => {
                             const Icon = pub.icon;
+                            const offsetValue = idx === 1 ? [-25, 25] : [-15, 15];
+
                             return (
-                                <motion.div
+                                <ParallaxLayer
                                     key={idx}
-                                    initial={{ opacity: 0, y: -40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{
-                                        duration: 0.5,
-                                        delay: idx * 0.1,
-                                        ease: [0.25, 1, 0.5, 1]
-                                    }}
+                                    targetRef={sectionRef}
+                                    offset={offsetValue}
                                     className="h-full"
                                 >
-                                    <Card className="h-full flex flex-col justify-between bg-white/10 border-white/10 text-white backdrop-blur-md hover:border-white/25 hover:bg-white/[0.12] transition-all duration-300 p-0 overflow-hidden group">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -40 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "-50px" }}
+                                        transition={{
+                                            duration: 0.5,
+                                            delay: idx * 0.1,
+                                            ease: [0.25, 1, 0.5, 1]
+                                        }}
+                                        className="h-full"
+                                    >
+                                        <Card className="h-full flex flex-col justify-between bg-white/10 border-white/10 text-white backdrop-blur-md hover:border-white/25 hover:bg-white/[0.12] transition-all duration-300 p-0 overflow-hidden group">
 
-                                        <CardHeader className="p-4 pb-2 space-y-2">
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">
-                                                    {pub.type}
-                                                </span>
-                                                <div className="p-1.5 rounded-md bg-white/5 border border-white/10 text-slate-300 group-hover:text-emerald-300 transition-colors">
-                                                    <Icon className="w-3.5 h-3.5" />
+                                            <CardHeader className="p-4 pb-2 space-y-2">
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">
+                                                        {pub.type}
+                                                    </span>
+                                                    <div className="p-1.5 rounded-md bg-white/5 border border-white/10 text-slate-300 group-hover:text-emerald-300 transition-colors">
+                                                        <Icon className="w-3.5 h-3.5" />
+                                                    </div>
                                                 </div>
+
+                                                <CardTitle className="text-base font-bold group-hover:text-emerald-300 transition-colors leading-snug flex items-start gap-1">
+                                                    <span>{pub.title}</span>
+                                                    <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5 text-emerald-400" />
+                                                </CardTitle>
+
+                                                <p className="text-[11px] text-slate-400 italic">
+                                                    {pub.publisher}
+                                                </p>
+                                            </CardHeader>
+
+                                            <CardContent className="px-4 py-2 text-xs text-slate-300 leading-relaxed flex-grow">
+                                                {pub.summary}
+                                            </CardContent>
+
+                                            <div className="p-4 pt-2 border-t border-white/10">
+                                                <Badge variant="secondary" className="bg-white/5 border border-white/10 text-slate-300 font-normal text-[10px] truncate max-w-full">
+                                                    {pub.tag}
+                                                </Badge>
                                             </div>
 
-                                            <CardTitle className="text-base font-bold group-hover:text-emerald-300 transition-colors leading-snug flex items-start gap-1">
-                                                <span>{pub.title}</span>
-                                                <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5 text-emerald-400" />
-                                            </CardTitle>
-
-                                            <p className="text-[11px] text-slate-400 italic">
-                                                {pub.publisher}
-                                            </p>
-                                        </CardHeader>
-
-                                        <CardContent className="px-4 py-2 text-xs text-slate-300 leading-relaxed flex-grow">
-                                            {pub.summary}
-                                        </CardContent>
-
-                                        <div className="p-4 pt-2 border-t border-white/10">
-                                            <Badge variant="secondary" className="bg-white/5 border border-white/10 text-slate-300 font-normal text-[10px] truncate max-w-full">
-                                                {pub.tag}
-                                            </Badge>
-                                        </div>
-
-                                    </Card>
-                                </motion.div>
+                                        </Card>
+                                    </motion.div>
+                                </ParallaxLayer>
                             );
                         })}
                     </div>
