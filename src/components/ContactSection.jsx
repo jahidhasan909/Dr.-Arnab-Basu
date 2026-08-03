@@ -45,22 +45,57 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+         
+          access_key: "b176e36f-6f45-42b3-81e3-1debb4e46b16", 
+          
+          name: formData.fullName,
+          email: formData.email,
+          organization: formData.organization,
+          category: formData.category,
+          message: formData.message,
+
+       
+          subject: `Executive Inquiry: ${formData.category} - ${formData.fullName}`,
+          from_name: "Dr. Arnab Basu Executive Desk",
+          
+         
+          autorespond: `Thank you for reaching out, ${formData.fullName}. Your message regarding "${formData.category}" has been successfully routed to Dr. Arnab Basu's executive desk. We will respond via email shortly.`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        toast.success('Thank you. A confirmation receipt has been sent to your email.');
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+    } catch (error) {
+      console.error('Email Submission Error:', error);
       setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1200);
-    toast.success('Thank you. Your message has been routed to Dr. Arnab Basus executive desk. We will respond via email shortly.');
+      toast.error('Failed to transmit inquiry. Please try again.');
+    }
   };
 
   return (
     <section id="contact" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <div className="space-y-12">
         
-       
         <motion.div 
           initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -81,16 +116,14 @@ const ContactSection = () => {
           </h2>
 
           <p className="text-slate-300 lg:hidden text-xs sm:text-[0.95rem] leading-relaxed">
-            Dr. Arnab Basu is available for C-Suite advisory,  executive keynote addresses on Behavioral  Intelligence & AI Strategy, <br /> venture jury appointments, and strategic board positions.
+            Dr. Arnab Basu is available for C-Suite advisory, executive keynote addresses on Behavioral Intelligence &amp; AI Strategy, venture jury appointments, and strategic board positions.
           </p>
           <p className="text-slate-300 hidden lg:block sm:text-[0.95rem] leading-relaxed">
-            Dr. Arnab Basu is available for C-Suite advisory,  executive keynote addresses on Behavioral <br /> Intelligence & AI Strategy,  venture jury appointments, and strategic board positions.
+            Dr. Arnab Basu is available for C-Suite advisory, executive keynote addresses on Behavioral <br /> Intelligence &amp; AI Strategy, venture jury appointments, and strategic board positions.
           </p>
         </motion.div>
 
-    
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-stretch">
-          
           
           <motion.div 
             initial={{ opacity: 0, y: -50 }}
@@ -161,7 +194,6 @@ const ContactSection = () => {
             </Card>
           </motion.div>
 
-          
           <motion.div 
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -178,7 +210,7 @@ const ContactSection = () => {
                   <div className="space-y-2 max-w-md mx-auto">
                     <h3 className="text-xl font-bold text-white">Inquiry Received</h3>
                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      Thank you. Your message has been routed to Dr. Arnab Basu&apos;s executive desk. We will respond via email shortly.
+                      Thank you. Your message has been routed to Dr. Arnab Basu&apos;s executive desk and a confirmation receipt has been sent to your email.
                     </p>
                   </div>
                   <Button 
