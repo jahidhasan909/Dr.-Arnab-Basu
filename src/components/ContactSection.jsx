@@ -58,7 +58,6 @@ const ContactSection = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-         
           access_key: "b176e36f-6f45-42b3-81e3-1debb4e46b16", 
           
           name: formData.fullName,
@@ -67,12 +66,13 @@ const ContactSection = () => {
           category: formData.category,
           message: formData.message,
 
-       
-          subject: `Executive Inquiry: ${formData.category} - ${formData.fullName}`,
+     
+          subject: `Executive Inquiry: ${formData.category || 'General'} - ${formData.fullName}`,
           from_name: "Dr. Arnab Basu Executive Desk",
+          replyto: formData.email,
+
           
-         
-          autorespond: `Thank you for reaching out, ${formData.fullName}. Your message regarding "${formData.category}" has been successfully routed to Dr. Arnab Basu's executive desk. We will respond via email shortly.`,
+          autorespond: `Dear ${formData.fullName},\n\nThank you for reaching out. Your message regarding "${formData.category || 'Executive Inquiry'}" has been successfully routed to Dr. Arnab Basu's executive desk.\n\nWe will review your details and respond via email shortly.\n\nBest regards,\nExecutive Desk | Dr. Arnab Basu\nwww.arnabbasu.in`,
         }),
       });
 
@@ -81,21 +81,21 @@ const ContactSection = () => {
       if (result.success) {
         setIsSubmitting(false);
         setIsSubmitted(true);
-        toast.success('Thank you. A confirmation receipt has been sent to your email.');
+        toast.success("Thank you. A confirmation receipt has been sent to your email.");
       } else {
-        throw new Error(result.message || 'Submission failed');
+        throw new Error(result.message || "Submission failed");
       }
     } catch (error) {
-      console.error('Email Submission Error:', error);
+      console.error("Email Submission Error:", error);
       setIsSubmitting(false);
-      toast.error('Failed to transmit inquiry. Please try again.');
+      toast.error("Failed to transmit inquiry. Please try again.");
     }
   };
 
   return (
     <section id="contact" className="relative py-16 md:py-20 lg:py-24 px-4 max-w-[1309px] mx-auto text-white overflow-hidden">
       <div className="space-y-12">
-        
+      
         <motion.div 
           initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -123,7 +123,9 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
+    
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-stretch">
+          
           
           <motion.div 
             initial={{ opacity: 0, y: -50 }}
@@ -194,6 +196,7 @@ const ContactSection = () => {
             </Card>
           </motion.div>
 
+         
           <motion.div 
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -210,7 +213,7 @@ const ContactSection = () => {
                   <div className="space-y-2 max-w-md mx-auto">
                     <h3 className="text-xl font-bold text-white">Inquiry Received</h3>
                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      Thank you. Your message has been routed to Dr. Arnab Basu&apos;s executive desk and a confirmation receipt has been sent to your email.
+                      Thank you. Your message has been routed to Dr. Arnab Basu&apos;s executive desk. A confirmation receipt has been sent to your email address.
                     </p>
                   </div>
                   <Button 
@@ -274,11 +277,11 @@ const ContactSection = () => {
                             <SelectValue placeholder="Select requirement..." />
                           </SelectTrigger>
                           <SelectContent className="bg-slate-900 border-white/10 text-white text-xs">
-                            <SelectItem value="keynote">Keynote Address / Summit Speaker</SelectItem>
-                            <SelectItem value="advisory">Executive Advisory / C-Suite Strategy</SelectItem>
-                            <SelectItem value="jury">Startup Pitch Jury / Competition Judge</SelectItem>
-                            <SelectItem value="yancha">Yancha EdTech / HIQ Implementation</SelectItem>
-                            <SelectItem value="board">Board Appointment / Venture Investment</SelectItem>
+                            <SelectItem value="Keynote Address / Summit Speaker">Keynote Address / Summit Speaker</SelectItem>
+                            <SelectItem value="Executive Advisory / C-Suite Strategy">Executive Advisory / C-Suite Strategy</SelectItem>
+                            <SelectItem value="Startup Pitch Jury / Competition Judge">Startup Pitch Jury / Competition Judge</SelectItem>
+                            <SelectItem value="Yancha EdTech / HIQ Implementation">Yancha EdTech / HIQ Implementation</SelectItem>
+                            <SelectItem value="Board Appointment / Venture Investment">Board Appointment / Venture Investment</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
