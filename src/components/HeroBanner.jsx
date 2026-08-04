@@ -1,13 +1,43 @@
 'use client'
 import { Award, BookOpen, Briefcase, Calendar, ChevronRight, GraduationCap, Rocket, Users } from 'lucide-react';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ParallaxLayer from '@/components/ui/ParallaxLayer';
+import { CountUp } from '@/hooks/useCountUp';
+
+const MetricItem = ({ metric, isLast, start }) => {
+    const Icon = metric.icon;
+
+    return (
+        <div
+            className={`flex flex-col items-center sm:items-start text-center sm:text-left p-3 rounded-xl transition-all duration-300 hover:bg-white/[0.03] ${
+                !isLast ? "md:border-r md:border-white/10" : ""
+            }`}
+        >
+            <div className="flex items-center gap-2 mb-2">
+                <div className="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0">
+                    <Icon className={`w-4 h-4 ${metric.accentColor}`} />
+                </div>
+
+                <CountUp
+                    value={metric.value}
+                    start={start}
+                    className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white"
+                />
+            </div>
+
+            <p className="text-xs sm:text-sm font-medium text-slate-400 leading-snug">
+                {metric.label}
+            </p>
+        </div>
+    );
+};
 
 const HeroBanner = () => {
     const sectionRef = useRef(null);
+    const [metricsReady, setMetricsReady] = useState(false);
 
     const BADGES = [
         {
@@ -188,33 +218,19 @@ const HeroBanner = () => {
                 offset={[-20, 20]}
                 className="w-full max-w-11/15 relative z-10"
             >
-                <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6 rounded-lg bg-white/10 border border-white/10 mt-10">
-                    {METRICS.map((metric, idx) => {
-                        const Icon = metric.icon;
-
-                        return (
-                            <div
-                                key={idx}
-                                className={`flex flex-col items-center sm:items-start text-center sm:text-left p-3 rounded-xl transition-all duration-300 hover:bg-white/[0.03]
-              ${idx !== METRICS.length - 1 ? "md:border-r md:border-white/10" : ""}
-            `}
-                            >
-                                <div className="flex items-center gap-2 mb-2">
-                                    <div className="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0">
-                                        <Icon className={`w-4 h-4 ${metric.accentColor}`} />
-                                    </div>
-
-                                    <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
-                                        {metric.value}
-                                    </span>
-                                </div>
-
-                                <p className="text-xs sm:text-sm font-medium text-slate-400 leading-snug">
-                                    {metric.label}
-                                </p>
-                            </div>
-                        );
-                    })}
+                <motion.div
+                    variants={itemVariants}
+                    onAnimationComplete={() => setMetricsReady(true)}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6 rounded-lg bg-white/10 border border-white/10 mt-10"
+                >
+                    {METRICS.map((metric, idx) => (
+                        <MetricItem
+                            key={idx}
+                            metric={metric}
+                            isLast={idx === METRICS.length - 1}
+                            start={metricsReady}
+                        />
+                    ))}
                 </motion.div>
             </ParallaxLayer>
         </motion.section>

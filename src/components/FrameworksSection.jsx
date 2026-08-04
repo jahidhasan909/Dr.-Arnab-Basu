@@ -26,6 +26,13 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ParallaxLayer from '@/components/ui/ParallaxLayer';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Keyboard } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
+
 const PUBLICATIONS = [
     {
         type: "Commercial Book · May 2024",
@@ -271,66 +278,113 @@ const FrameworksSection = () => {
                         Publications & Books
                     </motion.h3>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {PUBLICATIONS.map((pub, idx) => {
-                            const Icon = pub.icon;
-                            const offsetValue = idx === 1 ? [-25, 25] : [-15, 15];
+                    <div className="relative py-2">
+                        {(() => {
+                            const slidesData = PUBLICATIONS.length < 6 ? [...PUBLICATIONS, ...PUBLICATIONS] : PUBLICATIONS;
 
                             return (
-                                <ParallaxLayer
-                                    key={idx}
-                                    targetRef={sectionRef}
-                                    offset={offsetValue}
-                                    className="h-full"
+                                <Swiper
+                                    modules={[Autoplay, Pagination, Keyboard]}
+                                    autoplay={{
+                                        delay: 4000,
+                                        disableOnInteraction: false,
+                                        pauseOnMouseEnter: true,
+                                    }}
+                                    loop={true}
+                                    speed={600}
+                                    grabCursor={true}
+                                    keyboard={{ enabled: true }}
+                                    pagination={{
+                                        clickable: true,
+                                        el: '.publications-swiper-pagination',
+                                    }}
+                                    breakpoints={{
+                                        0: {
+                                            slidesPerView: 1,
+                                            spaceBetween: 16,
+                                            centeredSlides: false,
+                                        },
+                                        640: {
+                                            slidesPerView: 2,
+                                            spaceBetween: 20,
+                                            centeredSlides: false,
+                                        },
+                                        1024: {
+                                            slidesPerView: 1.6,
+                                            spaceBetween: 24,
+                                            centeredSlides: true,
+                                        },
+                                    }}
+                                    className="publications-swiper !pb-10 !pt-2"
                                 >
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -40 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "-50px" }}
-                                        transition={{
-                                            duration: 0.5,
-                                            delay: idx * 0.1,
-                                            ease: [0.25, 1, 0.5, 1]
-                                        }}
-                                        className="h-full"
-                                    >
-                                        <Card className="h-full flex flex-col justify-between bg-white/10 border-white/10 text-white backdrop-blur-md hover:border-white/25 hover:bg-white/[0.12] transition-all duration-300 p-0 overflow-hidden group">
+                                    {slidesData.map((pub, idx) => {
+                                        const Icon = pub.icon;
 
-                                            <CardHeader className="p-4 pb-2 space-y-2">
-                                                <div className="flex items-center justify-between">
-                                                    <span className="text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">
-                                                        {pub.type}
-                                                    </span>
-                                                    <div className="p-1.5 rounded-md bg-white/5 border border-white/10 text-slate-300 group-hover:text-emerald-300 transition-colors">
-                                                        <Icon className="w-3.5 h-3.5" />
-                                                    </div>
-                                                </div>
+                                        return (
+                                            <SwiperSlide key={idx} className="h-auto transition-all duration-500 py-2">
+                                                {({ isActive }) => (
+                                                    <Card className={`h-full flex flex-col justify-between bg-white/10 border-white/10 text-white backdrop-blur-md hover:border-white/25 hover:bg-white/[0.12] transition-all duration-500 p-0 overflow-hidden group shadow-none ${
+                                                        isActive ? 'scale-100 opacity-100 border-emerald-400/40' : 'scale-[0.96] opacity-70 border-white/10'
+                                                    }`}>
 
-                                                <CardTitle className="text-base font-bold group-hover:text-emerald-300 transition-colors leading-snug flex items-start gap-1">
-                                                    <span>{pub.title}</span>
-                                                    <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5 text-emerald-400" />
-                                                </CardTitle>
+                                                        <CardHeader className="p-4 pb-2 space-y-2">
+                                                            <div className="flex items-center justify-between">
+                                                                <span className="text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">
+                                                                    {pub.type}
+                                                                </span>
+                                                                <div className="p-1.5 rounded-md bg-white/5 border border-white/10 text-slate-300 group-hover:text-emerald-300 transition-colors">
+                                                                    <Icon className="w-3.5 h-3.5" />
+                                                                </div>
+                                                            </div>
 
-                                                <p className="text-[11px] text-slate-400 italic">
-                                                    {pub.publisher}
-                                                </p>
-                                            </CardHeader>
+                                                            <CardTitle className="text-base font-bold group-hover:text-emerald-300 transition-colors leading-snug flex items-start gap-1">
+                                                                <span>{pub.title}</span>
+                                                                <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5 text-emerald-400" />
+                                                            </CardTitle>
 
-                                            <CardContent className="px-4 py-2 text-xs text-slate-300 leading-relaxed flex-grow">
-                                                {pub.summary}
-                                            </CardContent>
+                                                            <p className="text-[11px] text-slate-400 italic">
+                                                                {pub.publisher}
+                                                            </p>
+                                                        </CardHeader>
 
-                                            <div className="p-4 pt-2 border-t border-white/10">
-                                                <Badge variant="secondary" className="bg-white/5 border border-white/10 text-slate-300 font-normal text-[10px] truncate max-w-full">
-                                                    {pub.tag}
-                                                </Badge>
-                                            </div>
+                                                        <CardContent className="px-4 py-2 text-xs text-slate-300 leading-relaxed flex-grow">
+                                                            {pub.summary}
+                                                        </CardContent>
 
-                                        </Card>
-                                    </motion.div>
-                                </ParallaxLayer>
+                                                        <div className="p-4 pt-2 border-t border-white/10">
+                                                            <Badge variant="secondary" className="bg-white/5 border border-white/10 text-slate-300 font-normal text-[10px] truncate max-w-full">
+                                                                {pub.tag}
+                                                            </Badge>
+                                                        </div>
+
+                                                    </Card>
+                                                )}
+                                            </SwiperSlide>
+                                        );
+                                    })}
+                                </Swiper>
                             );
-                        })}
+                        })()}
+
+                        
+                        <div className="publications-swiper-pagination flex justify-center items-center gap-2 mt-4" />
+
+                        <style jsx global>{`
+                            .publications-swiper-pagination .swiper-pagination-bullet {
+                                background: rgba(255, 255, 255, 0.25);
+                                opacity: 1;
+                                width: 8px;
+                                height: 8px;
+                                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                                cursor: pointer;
+                                margin: 0 2px !important;
+                            }
+                            .publications-swiper-pagination .swiper-pagination-bullet-active {
+                                background: #34d399 !important;
+                                width: 24px;
+                                border-radius: 9999px;
+                            }
+                        `}</style>
                     </div>
                 </div>
 
